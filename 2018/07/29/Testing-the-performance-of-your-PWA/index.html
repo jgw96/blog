@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Performance, performance, performance. Performance, particularly loading performance, is key to a good PWA. With studies such as this study from DoubleClick by Google showing that sites that load with">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Testing the performance of your PWA">
+<meta property="og:url" content="https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/index.html">
+<meta property="og:site_name" content="On the Web with Justin Willis">
+<meta property="og:description" content="Performance, performance, performance. Performance, particularly loading performance, is key to a good PWA. With studies such as this study from DoubleClick by Google showing that sites that load with">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-30T02:12:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Testing the performance of your PWA">
+<meta name="twitter:description" content="Performance, performance, performance. Performance, particularly loading performance, is key to a good PWA. With studies such as this study from DoubleClick by Google showing that sites that load with">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Testing the performance of your PWA</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/blog/2018/07/29/Easy-Background-Sync-with-Workbox/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&text=Testing the performance of your PWA"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&is_video=false&description=Testing the performance of your PWA"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Testing the performance of your PWA&body=Check out this article: https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&name=Testing the performance of your PWA&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-considered-good-performance"><span class="toc-number">1.</span> <span class="toc-text">What is considered good performance?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Measurements"><span class="toc-number">2.</span> <span class="toc-text">Measurements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lighthouse"><span class="toc-number">3.</span> <span class="toc-text">Lighthouse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebPageTest"><span class="toc-number">4.</span> <span class="toc-text">WebPageTest</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Testing the performance of your PWA
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">On the Web with Justin Willis</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-30T02:11:13.000Z" itemprop="datePublished">2018-07-29</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Performance, performance, performance. Performance, particularly loading performance, is key to a good PWA. With studies such as <a href="https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/" target="_blank" rel="noopener">this study from DoubleClick by Google</a> showing that sites that load within 5 seconds on the average network (3g) have 70% longer sessions, 35% lower bounce rates, and 25% higher ad viewability than the average website, there is a real economic benefit to making sure your PWA loads fast for your users. I will be covering techniques on how to make your PWA fast in future posts, but an important starting point to performance is measuring the current performance of your PWA. While there are many ways to test the loading performance of your PWA, today I will cover the two easiest ways i’ve found.</p>
+<h2 id="What-is-considered-good-performance"><a href="#What-is-considered-good-performance" class="headerlink" title="What is considered good performance?"></a>What is considered good performance?</h2><p>Based on studies such as the DoubleClick study mentioned above, 5 - 7 seconds to interactive on a 3g network and an average device (think Moto G) is the standard target that should be met to ensure the best experience for users. Anything over that and you risk losing large amounts of users.</p>
+<h2 id="Measurements"><a href="#Measurements" class="headerlink" title="Measurements"></a>Measurements</h2><p>While there are a few different standard measurements that are used to measure loading performance, the two I normally pay attention too are called First Meaningful Paint and Time To Interactive. First Meaningful Paint is an internal browser heuristic that measures when the main content of a page has been rendered. In other words, when the First Meaningful Paint point has been reached that means the user can now see the main content of your app. Time To Interactive is a measurement that measures when the main thread is able to start handling user input, webfonts are loaded and visible and the layout has stabilized. In simple terms this means the point when your app has loaded enough to be usable.</p>
+<h2 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h2><p>Ligthouse is a tool from the Google Chrome team that, among many other things, allows you to easily test the performance of your PWA in an emulated environment that matches the average network speed and device that a real user will have. One of the most convenient things about Lighthouse is that it is built right into Chrome Dev Tools. Because of this, testing with Lighthouse is incredibly easy!</p>
+<p>To get started with Lighthouse you first need to make sure you have the Chrome Dev Tools open on a tab where you have your PWA open. If you dont already, typing Ctrl + Shift + i will open the devtools for you. Once you have the devtools open you need to navigate to the Audits tab in devtools. On the Audits tab you will see a button that says Perform an audit. Before clicking this button I recommend closing any other chrome tabs you have open along with stopping any intensive programs currently running on your computer. Once you have clicked the Perform an audit button I recommend making sure only the Performance section is checked before starting the audit. While Ligthouse can audit many very important things such as Accessibility, when only testing performance it will make your test go faster if you only run the Performance section.</p>
+<p>Once ligthouse has succesfully run you will see an audit report displayed. This report will include alot of info, but I find the most important numbers are the first meaningful paint and time to interactive scores. If these times are under the 5 second mark then you are good to go.</p>
+<h2 id="WebPageTest"><a href="#WebPageTest" class="headerlink" title="WebPageTest"></a>WebPageTest</h2><p>WebPageTest is a more advanced tool that can give you detailed info on your loading performance. WebPageTest lets you run tests on actual devices with actual 3G networks which gives you very accurate numbers. WebPageTest also integrates with Lighthouse! This combines the best parts of Ligthouse with the accurate, real world test that WebPageTest enables.</p>
+<p>To get started with WebPageTest go to <a href="https://www.webpagetest.org/easy" target="_blank" rel="noopener">https://www.webpagetest.org/easy</a>. This url will get you started with the preferred testing setup, a Moto G4 on a 3g connection. Before starting the test make sure the Run Lighthouse Audit checkbox is checked. Once that is checked you can run the test.</p>
+<p>One the test has succesfully run you should see a new page that includes a full perf report on your PWA. Because the full report can be a little overwhelming I normally use the lighthouse report that WebPageTest generates. This can be reached by clicking the square labeled Lighthouse PWA Score towards the top of the page. This lighthouse audit will give you the same information as running lighthouse in Chrome Dev Tools but with the added advantage of these numbers being from a test on a real average device and real 3g network instead of emulated.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-considered-good-performance"><span class="toc-number">1.</span> <span class="toc-text">What is considered good performance?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Measurements"><span class="toc-number">2.</span> <span class="toc-text">Measurements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lighthouse"><span class="toc-number">3.</span> <span class="toc-text">Lighthouse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebPageTest"><span class="toc-number">4.</span> <span class="toc-text">WebPageTest</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&text=Testing the performance of your PWA"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&is_video=false&description=Testing the performance of your PWA"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Testing the performance of your PWA&body=Check out this article: https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&title=Testing the performance of your PWA"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jgw96.github.io/blog/2018/07/29/Testing-the-performance-of-your-PWA/&name=Testing the performance of your PWA&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Justin Willis
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-121991845-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Hello everyone! Welcome to the first short post on my new blog “On the web with Justin”. I will be aiming to post atleast one article a week as I begin this blog journey and may increase that in the f">
+<meta name="keywords" content="PWA, Workbox, Service Worker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Easy Background Sync with Workbox">
+<meta property="og:url" content="https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/index.html">
+<meta property="og:site_name" content="On the Web with Justin Willis">
+<meta property="og:description" content="Hello everyone! Welcome to the first short post on my new blog “On the web with Justin”. I will be aiming to post atleast one article a week as I begin this blog journey and may increase that in the f">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-30T02:11:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Easy Background Sync with Workbox">
+<meta name="twitter:description" content="Hello everyone! Welcome to the first short post on my new blog “On the web with Justin”. I will be aiming to post atleast one article a week as I begin this blog journey and may increase that in the f">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Easy Background Sync with Workbox</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/blog/2018/07/29/Testing-the-performance-of-your-PWA/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&text=Easy Background Sync with Workbox"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&is_video=false&description=Easy Background Sync with Workbox"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Easy Background Sync with Workbox&body=Check out this article: https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&name=Easy Background Sync with Workbox&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Workbox"><span class="toc-number">1.</span> <span class="toc-text">What is Workbox?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-background-sync"><span class="toc-number">2.</span> <span class="toc-text">What is background sync?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alright-lets-do-this"><span class="toc-number">3.</span> <span class="toc-text">Alright, lets do this!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-final-coat-of-Polish"><span class="toc-number">4.</span> <span class="toc-text">The final coat of Polish</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Easy Background Sync with Workbox
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">On the Web with Justin Willis</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-30T02:06:27.000Z" itemprop="datePublished">2018-07-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/PWA-Workbox-Service-Worker/">PWA, Workbox, Service Worker</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Hello everyone! Welcome to the first short post on my new blog “On the web with Justin”. I will be aiming to post atleast one article a week as I begin this blog journey and may increase that in the future. I will be posting on topics such as the latest web tech, Progressive Web Apps, Service Workers, Web Components and more. With this out of the way lets dive straight into todays content!</p>
+<p>Mobile networks are not known for being reliable and in todays fast paced world this is not ideal. We may come up with that perfect tweet to post, pull out our phone and discover that boom, we dont currently have any service. Native apps typically handle this very nicely by allowing the action the user tried to complete while they were offline to be automatically retried once the user is back online but, web apps have typically not been able to achive this functionality, until now!</p>
+<h2 id="What-is-Workbox"><a href="#What-is-Workbox" class="headerlink" title="What is Workbox?"></a>What is Workbox?</h2><p>In todays post we will be making use of Workbox, a library built to make service workers easy. While I will not be diving into deep detail about what Workbox is you can <a href="https://developers.google.com/web/tools/workbox/" target="_blank" rel="noopener">check out the Workbox docs</a> for more info. Because of this, todays post is going to be assuming basic knowledge of Workbox.</p>
+<h2 id="What-is-background-sync"><a href="#What-is-background-sync" class="headerlink" title="What is background sync?"></a>What is background sync?</h2><p>The Background Sync API that powers this functionality is one of the awesome features that <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">Service Workers</a> have given us. The Background Sync API enables you to “catch” requests that the user tries to make while offline and replay those actions once the user is back online.</p>
+<p>What are use cases for this you might be asking? One common use case that apps such as the Facebook app use is allowing the user to make posts offline and then actually post those posts once the user is back online. With the Background Sync API you can enable this same type of functionality in your PWA! Lest dive into how we can use the Background Sync API in Workbox.</p>
+<h2 id="Alright-lets-do-this"><a href="#Alright-lets-do-this" class="headerlink" title="Alright, lets do this!"></a>Alright, lets do this!</h2><p>We first need to decide what actions we would like for the user to be able to do while offline. Deciding this should be a part of deciding what your offline strategy is, a topic that we will dive deeper into in a future post. For this example lets say we have are going to enable the user to post to a feed while offline. The url this action makes a POST request too is <a href="https://my-api-server/post" target="_blank" rel="noopener">https://my-api-server/post</a>. With this knowledge we can now start using the Background Sync API!</p>
+<p>We first need to register a route with workbox to handle this URL. We can accomplish this with the below bit of JavaScript in our service worker file:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">workbox.routing.registerRoute(</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^https:\/\/my-api-server/post\/'</span>),</span><br><span class="line">  workbox.strategies.networkOnly(),</span><br><span class="line">  <span class="string">'POST'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>This snippet registers a route (we are using a RegExp route in this case) which will match the URL our action is making a request too. We then say that we want to use the networkOnly strategy on this route. You can read up more on strategies here in the Workbox docs, but the basics of the networkOnly strategy is that it will never look to the cache for this route, but instead will always go to the network. We then finally say that we want to handle all ‘POST’ requests to this url.</p>
+<p>We now need to set up our instance of the Workbox backgroundSync plugin. Lets do this with the following snippet of code in our service worker file:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bgSyncPlugin = <span class="keyword">new</span> workbox.backgroundSync.Plugin(<span class="string">'myQueueName'</span>, &#123;</span><br><span class="line">  maxRetentionTime: <span class="number">24</span> * <span class="number">60</span> <span class="comment">// Retry for max of 24 Hours</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>We now have an instance of the Workbox backgroundSync plugin we can use in the route we registered earlier. Lets pass this instance of the plugin to our route handler:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workbox.routing.registerRoute(</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^https:\/\/my-api-server/post\/'</span>),</span><br><span class="line">  workbox.strategies.networkOnly(&#123;</span><br><span class="line">    plugins: [bgSyncPlugin]</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="string">'POST'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>With this bit of code our Background Sync plugin will now handle all requests that match our route! Any failed ‘POST’ requests to this route will now be saved by our service worker and replayed once the user is back online!</p>
+<h2 id="The-final-coat-of-Polish"><a href="#The-final-coat-of-Polish" class="headerlink" title="The final coat of Polish"></a>The final coat of Polish</h2><p>The above code is technically all the code needed to enable the Background Sync API on a route with Workbox, but lets take this one step further. Normally most apps will display a notification once an action has been replayed and, we can do the same in our PWA!</p>
+<p>Lets first write a function to handle showing a notification:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> showNotification = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  self.registration.showNotification(<span class="string">'Post Sent'</span>, &#123;</span><br><span class="line">    body: <span class="string">'You are back online and your post was successfully sent!'</span>,</span><br><span class="line">    icon: <span class="string">'assets/icon/256.png'</span>,</span><br><span class="line">    badge: <span class="string">'assets/icon/32png.png'</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Note: you will need to set up web push notifications first to be able to show a notification to the user. This is something we will dive into in a future post but for now I recommend checking out this tutorial on setting them up *<br>Now all we need to do is call our showNotification function we wrote above once the queued actions have been replayed by the service worker. Lets change our background sync plugin implementation to accomplish this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bgSyncPlugin = <span class="keyword">new</span> workbox.backgroundSync.Plugin(<span class="string">'myQueueName'</span>, &#123;</span><br><span class="line">  maxRetentionTime: <span class="number">24</span> * <span class="number">60</span> <span class="comment">// Retry for max of 24 Hours,</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// the new bit</span></span><br><span class="line">  callbacks: &#123;</span><br><span class="line">    queueDidReplay: showNotification</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>With that final snippet we will now display a notification to the user once an action has successfully been completed, awesome!</p>
+<p>For more examples check out <a href="https://github.com/jgw96/Cannaba/blob/master/src/sw.js" target="_blank" rel="noopener">my implementation</a> in my Cannabis social network PWA I am currently building (more on that in a future post).</p>
+<p>For more info on Background Sync in Workbox check out these docs.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Workbox"><span class="toc-number">1.</span> <span class="toc-text">What is Workbox?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-background-sync"><span class="toc-number">2.</span> <span class="toc-text">What is background sync?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alright-lets-do-this"><span class="toc-number">3.</span> <span class="toc-text">Alright, lets do this!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-final-coat-of-Polish"><span class="toc-number">4.</span> <span class="toc-text">The final coat of Polish</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&text=Easy Background Sync with Workbox"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&is_video=false&description=Easy Background Sync with Workbox"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Easy Background Sync with Workbox&body=Check out this article: https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&title=Easy Background Sync with Workbox"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jgw96.github.io/blog/2018/07/29/Easy-Background-Sync-with-Workbox/&name=Easy Background Sync with Workbox&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Justin Willis
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-121991845-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
