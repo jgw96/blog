@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=EN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Web Components, Web Components, Web Components. Web Components have been around for a while and have just started to catch steam over the past year. With that energy has come a new crop of Web Compone">
+<meta name="keywords" content="PWA, Web Components">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building PWAs with Web Components">
+<meta property="og:url" content="https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/index.html">
+<meta property="og:site_name" content="On the Web with Justin Willis">
+<meta property="og:description" content="Web Components, Web Components, Web Components. Web Components have been around for a while and have just started to catch steam over the past year. With that energy has come a new crop of Web Compone">
+<meta property="og:locale" content="EN">
+<meta property="og:updated_time" content="2018-07-30T20:04:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Building PWAs with Web Components">
+<meta name="twitter:description" content="Web Components, Web Components, Web Components. Web Components have been around for a while and have just started to catch steam over the past year. With that energy has come a new crop of Web Compone">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Building PWAs with Web Components</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/blog/2018/07/29/Testing-the-performance-of-your-PWA/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&text=Building PWAs with Web Components"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&is_video=false&description=Building PWAs with Web Components"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Building PWAs with Web Components&body=Check out this article: https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&name=Building PWAs with Web Components&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First-of-all-what-are-Web-Components"><span class="toc-number">1.</span> <span class="toc-text">First of all, what are Web Components?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-do-I-mean-when-I-say-“creating-entire-PWAs-with-Web-Components”"><span class="toc-number">2.</span> <span class="toc-text">What do I mean when I say “creating entire PWAs with Web Components”?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-by-default"><span class="toc-number">3.</span> <span class="toc-text">Fast by default</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So-what-do-I-recommend-to-use-to-build-great-PWAs"><span class="toc-number">4.</span> <span class="toc-text">So what do I recommend to use to build great PWAs?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLDR"><span class="toc-number">5.</span> <span class="toc-text">TLDR</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Building PWAs with Web Components
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">On the Web with Justin Willis</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-30T02:22:31.000Z" itemprop="datePublished">2018-07-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/PWA-Web-Components/">PWA, Web Components</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Web Components, Web Components, Web Components. Web Components have been around for a while and have just started to catch steam over the past year. With that energy has come a new crop of Web Components libraries such as <a href="https://stenciljs.com/" target="_blank" rel="noopener">Stencil</a>, <a href="https://www.polymer-project.org/" target="_blank" rel="noopener">Polymer 3.0</a> and <a href="https://skatejs.netlify.com/" target="_blank" rel="noopener">SkateJS</a> which make it easier than ever before to use Web Components. Traditionally the prime use case for Web Components has been creating re-usable components that can be used with any framework (and this is an awesome use case), but today I would like to talk about another compelling use case, creating entire PWAs with Web Components!</p>
+<p><em>Before we dive in I would like to say that the purpose of this post is not to say that you should never use a framework or talk down on your framework of choice etc. Instead, the purpose of this post is to broaden the discussion around creating entire apps with Web Components, talk about the motivations for buiding apps with Web Components and to simply make you think about your current tech stack choices.</em></p>
+<p><em>Also, I talk alot about Stencil and the Ionic PWA Toolkit in this post. Because of this I feel its necessary to say that I worked directly on these projects over the past two years while I worked at Ionic. Also, I do not work for Ionic anymore as I recently <a href="https://twitter.com/Justinwillis96/status/1014221049297240065" target="_blank" rel="noopener">got hired at Microsoft</a>.</em></p>
+<h2 id="First-of-all-what-are-Web-Components"><a href="#First-of-all-what-are-Web-Components" class="headerlink" title="First of all, what are Web Components?"></a>First of all, what are Web Components?</h2><p>You may be familiar with components from frameworks such as Angular and React. Web Components are very similar, but the key difference is that they are a made up of browser standard APIs (specifically Custom Elements and Shadow Dom). This means that web components can be run in the browser without the need for a framework or library of any kind as the components are natively understood by the browser. For more info on Web Components check out <a href="https://developers.google.com/web/fundamentals/web-components/" target="_blank" rel="noopener">these handy docs</a>.</p>
+<h2 id="What-do-I-mean-when-I-say-“creating-entire-PWAs-with-Web-Components”"><a href="#What-do-I-mean-when-I-say-“creating-entire-PWAs-with-Web-Components”" class="headerlink" title="What do I mean when I say “creating entire PWAs with Web Components”?"></a>What do I mean when I say “creating entire PWAs with Web Components”?</h2><p>At this point you may hear that statement and think I mean that you should try to build your app completely out of vanilla web components, but that is not what I mean at all. When I say that you can build an entire PWA with Web Components I mean using tools such as <a href="https://stenciljs.com/" target="_blank" rel="noopener">Stencil</a> that provide crucial things that apps need such as templating, state management and routing but compile down to Web Components with minimal to no overhead. Obviously creating a PWA with just plain web components would not be a very good experience, but with the little bit of “sugar” that tools like Stencil provide Web Components fast become a legit way to build complete PWAs.</p>
+<h2 id="Fast-by-default"><a href="#Fast-by-default" class="headerlink" title="Fast by default"></a>Fast by default</h2><p>Awesome PWAs can be built with frameworks like React, as the <a href="https://mobile.twitter.com/home" target="_blank" rel="noopener">Twitter PWA</a> shows, so why would we want to look at Web Components as a solution to build a PWA?</p>
+<p>The first thing that needs to be evalutated is the overall size of our framework. This has been talked about many times in the past and is not going to be the focus of this post, but I urge you to read <a href="https://infrequently.org/2017/10/can-you-afford-it-real-world-web-performance-budgets/" target="_blank" rel="noopener">this article</a> which does a deep dive on this subject. The most important thing that relates to this post is the fact that libraries built on top of web components, like Stencil, tend to be much much smaller than more traditional frameworks like React and Angular:</p>
+<ul>
+<li>Angular 2: 111kb gzip + min</li>
+<li>React 16.2.0 + React DOM: 31.8kb gzip + min</li>
+<li>Stencil: 8.1kb gzip + min</li>
+</ul>
+<p>Why do they tend to be so much smaller? By relying on browser standards like Web Components and ES modules to do the heavy lifting web components libraries can ship much less JavaScript to the browser and still accomplish the same functionality as a more traditional framework!</p>
+<p>The second, and more important thing in my opinion, is how easy a framework makes crucial performance practices such as code splitting and lazy loading of bundles AKA “Is this framework fast by default?”. These techniques are possible in most modern frameworks (React, Vue and Angular) and many people use them, but the default setup for these frameworks is the opposite of best pracitces like code splitting and lazy loading. For experienced teams, like the team behind the Twitter PWA, <a href="https://reactjs.org/docs/code-splitting.html" target="_blank" rel="noopener">setting up things like code splitting and lazy loading with the React Router</a> is probably pretty easy but for the average person / team who may not have deep knowledge of things like code splitting, they are most likely not going to be set up. Because of this, the team is left with slow defaults. On the other hand, Web Components libraries like Stencil offer code splitting and lazy loading by default with 0 config needed. Because of this you start out fast by default which makes it much easier to stay fast as your PWA is built.</p>
+<p>I could talk about this all day, but I think <a href="https://twitter.com/slightlylate" target="_blank" rel="noopener">Alex Russel</a> sums it up best <a href="https://twitter.com/slightlylate/status/1022596625854738432" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="So-what-do-I-recommend-to-use-to-build-great-PWAs"><a href="#So-what-do-I-recommend-to-use-to-build-great-PWAs" class="headerlink" title="So what do I recommend to use to build great PWAs?"></a>So what do I recommend to use to build great PWAs?</h2><p>There are a few projects out there that enable you to build awesome PWAs with web components and ensure that “Fast by Default” developer experience. My two favorites are the <a href="https://ionicframework.com/pwa/toolkit" target="_blank" rel="noopener">Ionic PWA Toolkit</a> and the <a href="https://polymer.github.io/pwa-starter-kit/" target="_blank" rel="noopener">Polymer PWA Starter Kit</a>. Both of these projects offer a fast by default experience but today we will focus on the Ionic PWA Toolkit as that is the project I have the most experince with.</p>
+<p>The Ionic PWA Toolkit allows you to build complete PWAs using <a href="https://beta.ionicframework.com/docs/" target="_blank" rel="noopener">Ionic 4</a> and <a href="https://stenciljs.com/" target="_blank" rel="noopener">Stencil</a>. It includes true zero config lazy loading and code splitting by component, taking it a step further than the code splitting by route that is normally implemented. Also, by using <a href="https://beta.ionicframework.com/docs/api" target="_blank" rel="noopener">Ionic 4</a>, you get a set of 90 something awesome pre-built, pre-designed, automatically lazy loaded and code split web components to build your app with.</p>
+<p>Using the Ionic PWA Toolkit you can build production ready PWAs that load insanely fast, look good and provide a great experience for the end user. And when I say load insanely fast, <a href="https://twitter.com/Justinwillis96/status/1018960150764380160" target="_blank" rel="noopener">I mean it</a>.</p>
+<p>If you want to try a PWA built with the Ionic PWA Toolkit for yourself, try my <a href="https://stencilbeer.firebaseapp.com/" target="_blank" rel="noopener">Ionic PWA Demo that I built with the Ionic PWA Toolkit</a>. You can also see the code for this PWA <a href="https://github.com/jgw96/stencil-beer" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="TLDR"><a href="#TLDR" class="headerlink" title="TLDR"></a>TLDR</h2><p>Using Web Components to build cross framework components is an awesome use case but web components can also be used to build entire PWAs! Libraries such as <a href="https://stenciljs.com" target="_blank" rel="noopener">Stencil</a> provide crucial things needed to build PWAs such as templating (JSX), state management (redux / context) and routing but with minimal overhead making it possible to build great PWAs completely with Web Components. Projects like the <a href="https://ionicframework.com/pwa/toolkit" target="_blank" rel="noopener">Ionic PWA Toolkit</a> and the <a href="https://polymer.github.io/pwa-starter-kit/" target="_blank" rel="noopener">Polymer PWA Starter Kit</a> that use Web Components libraries like Stencil and Polymer 3 provide a “Fast by Default” experience by providing zero config / low config code splitting and lazy loading out of the box. Also, because these tools are built completely with Web Components, they are able to provide the same functionality as traditional frameworks but at a much smaller size.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First-of-all-what-are-Web-Components"><span class="toc-number">1.</span> <span class="toc-text">First of all, what are Web Components?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-do-I-mean-when-I-say-“creating-entire-PWAs-with-Web-Components”"><span class="toc-number">2.</span> <span class="toc-text">What do I mean when I say “creating entire PWAs with Web Components”?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-by-default"><span class="toc-number">3.</span> <span class="toc-text">Fast by default</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#So-what-do-I-recommend-to-use-to-build-great-PWAs"><span class="toc-number">4.</span> <span class="toc-text">So what do I recommend to use to build great PWAs?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLDR"><span class="toc-number">5.</span> <span class="toc-text">TLDR</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&text=Building PWAs with Web Components"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&is_video=false&description=Building PWAs with Web Components"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Building PWAs with Web Components&body=Check out this article: https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&title=Building PWAs with Web Components"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://jgw96.github.io/blog/2018/07/29/Building-PWAs-with-Web-Components/&name=Building PWAs with Web Components&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Justin Willis
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">Home</a></li>
+         
+          <li><a href="/blog/archives/">Writing</a></li>
+         
+          <li><a href="/blog/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-121991845-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
